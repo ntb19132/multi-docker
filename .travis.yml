@@ -21,3 +21,15 @@ after_success:
   - docker push ntb19132/multi-nginx
   - docker push ntb19132/multi-server
   - docker push ntb19132/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-southeast-1"
+  app: "multi-docker"
+  env: "Multidocker-env"
+  bucket_name: "elasticbeanstalk-ap-southeast-1-099508042811"
+  bucket_path: "docker-multi"
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
